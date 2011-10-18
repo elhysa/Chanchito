@@ -1,0 +1,10 @@
+{% extends 'ChanchitoBundle::layout.html.twig' %}
+{% block content %}
+<h1>Registro de asistencia</h1>
+
+<form action="{{ path('ChanchitoBundle_registro') }}" method='post'>
+    {{ form_rest(form) }}
+        <input type="submit" label="Registrar Asistencia"/>
+</form>
+
+{% endblock %}

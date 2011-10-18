@@ -1,0 +1,24 @@
+{% extends 'ChanchitoBundle::layout.html.twig' %}
+{% block content %}
+    <table border=2 >
+        <tr>
+            <th>Fecha Asistencia</th>
+            <th>Participante</th>
+            <th>Hora Sistema</th>    
+            <th>Hora Usuario</th>    
+            <th>Motivo Diferencia Hora</th>
+            <th>Monto a Pagar</th>
+        </tr>
+        {% for asistencia in listadoAsistencia  %}
+        <tr>
+
+            <td>{{ asistencia.fechaAsistencia | date('d/m/Y') }}</td>
+            <td>{{ asistencia.usuario.obtenerNombreCompleto  }}</td>
+            <td>{{ asistencia.registroReal | date('h:i:s') }}</td>
+            <td>{{ asistencia.registroUsuario | date('h:i:s') }}</td>
+            <td>{{ asistencia.motivo }}</td>
+            <td>{{ asistencia.obtenerMontoAsistencia() }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

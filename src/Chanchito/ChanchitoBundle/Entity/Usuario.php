@@ -1,0 +1,299 @@
+<?php
+namespace Chanchito\ChanchitoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Chanchito\ChanchitoBundle\Entity
+ *
+ * @ORM\Table(name="usuario")
+ * @ORM\Entity(repositoryClass="Chanchito\ChanchitoBundle\Entity\UsuarioRepository")
+ */
+
+class Usuario{
+
+	/**
+	* @ORM\Id
+	* @ORM\Column(type="integer")
+	* @ORM\GeneratedValue(strategy="IDENTITY")
+	*/
+	protected $id;
+
+        /**
+	* @ORM\Column(type="string" )
+	* @Assert\NotBlank()
+	*/
+	protected $usuario;
+        
+        /**
+	* @ORM\Column(type="string" )
+	*/
+	protected $nombres;
+	
+        /**
+	* @ORM\Column(type="string" )
+	* @Assert\NotBlank()
+	*/
+	protected $apellidos;
+	
+        /**
+	* @ORM\Column(type="string")
+	* @Assert\NotBlank()
+	*/
+	protected $correo;
+	
+        /**
+	* @ORM\Column(type="date")
+	*/
+	protected $fecharegistro;
+	
+        /**
+	* @ORM\Column(type="string")
+	* @Assert\NotBlank()
+	* @Assert\MinLength(5)
+	* @Assert\MaxLength(20)
+	*/
+	protected $password;
+	
+        /**
+	* @ORM\Column(type="string")
+	* @Assert\NotBlank()
+	*/
+	protected $urlfoto;
+	
+        /**
+	* @ORM\OneToMany(targetEntity="Asistencia", mappedBy="usuario")
+	*/
+	protected $asistencias;
+
+        /**
+	* @ORM\ManyToOne(targetEntity="Horario", inversedBy="usuarios", cascade={"remove"})
+	* @ORM\JoinColumn(name="horario_id", referencedColumnName="id")
+	*/
+	protected $horario;
+
+    public function __construct()
+    {
+        $this->asistencias = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->parametrosTardanza = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+     public function obtenerNombreCompleto()
+     {
+     	return $this->nombres." ".$this->apellidos;
+     }
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nombres
+     *
+     * @param string $nombres
+     */
+    public function setNombres($nombres)
+    {
+        $this->nombres = $nombres;
+    }
+
+    /**
+     * Get nombres
+     *
+     * @return string 
+     */
+    public function getNombres()
+    {
+        return $this->nombres;
+    }
+
+    /**
+     * Set apellidos
+     *
+     * @param string $apellidos
+     */
+    public function setApellidos($apellidos)
+    {
+        $this->apellidos = $apellidos;
+    }
+
+    /**
+     * Get apellidos
+     *
+     * @return string 
+     */
+    public function getApellidos()
+    {
+        return $this->apellidos;
+    }
+
+    /**
+     * Set correo
+     *
+     * @param string $correo
+     */
+    public function setCorreo($correo)
+    {
+        $this->correo = $correo;
+    }
+
+    /**
+     * Get correo
+     *
+     * @return string 
+     */
+    public function getCorreo()
+    {
+        return $this->correo;
+    }
+
+    /**
+     * Set fecharegistro
+     *
+     * @param date $fecharegistro
+     */
+    public function setFecharegistro($fecharegistro)
+    {
+        $this->fecharegistro = $fecharegistro;
+    }
+
+    /**
+     * Get fecharegistro
+     *
+     * @return date 
+     */
+    public function getFecharegistro()
+    {
+        return $this->fecharegistro;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set urlfoto
+     *
+     * @param string $urlfoto
+     */
+    public function setUrlfoto($urlfoto)
+    {
+        $this->urlfoto = $urlfoto;
+    }
+
+    /**
+     * Get urlfoto
+     *
+     * @return string 
+     */
+    public function getUrlfoto()
+    {
+        return $this->urlfoto;
+    }
+
+    /**
+     * Add asistencias
+     *
+     * @param Chanchito\ChanchitoBundle\Entity\Asistencia $asistencias
+     */
+    public function addAsistencia(\Chanchito\ChanchitoBundle\Entity\Asistencia $asistencias)
+    {
+        $this->asistencias[] = $asistencias;
+    }
+
+    /**
+     * Get asistencias
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAsistencias()
+    {
+        return $this->asistencias;
+    }
+
+    /**
+     * Add parametrosTardanza
+     *
+     * @param Chanchito\ChanchitoBundle\Entity\ParametroTardanza $parametrosTardanza
+     */
+    public function addParametroTardanza(\Chanchito\ChanchitoBundle\Entity\ParametroTardanza $parametrosTardanza)
+    {
+        $this->parametrosTardanza[] = $parametrosTardanza;
+    }
+
+    /**
+     * Get parametrosTardanza
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getParametrosTardanza()
+    {
+        return $this->parametrosTardanza;
+    }
+
+    /**
+     * Set usuario
+     *
+     * @param string $usuario
+     */
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
+    }
+
+    /**
+     * Get usuario
+     *
+     * @return string 
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * Set horario
+     *
+     * @param Chanchito\ChanchitoBundle\Entity\Horario $horario
+     */
+    public function setHorario(\Chanchito\ChanchitoBundle\Entity\Horario $horario)
+    {
+        $this->horario = $horario;
+    }
+
+    /**
+     * Get horario
+     *
+     * @return Chanchito\ChanchitoBundle\Entity\Horario 
+     */
+    public function getHorario()
+    {
+        return $this->horario;
+    }
+    
+    public function __toString(){
+        return $this->usuario;
+    }
+}
