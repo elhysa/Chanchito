@@ -7,6 +7,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Chanchito\ChanchitoBundle\Form\AsistenciaType;
+use Chanchito\ChanchitoBundle\Entity\Asistencia;
 
 class AsistenciaController extends Controller
 {
@@ -28,20 +29,27 @@ class AsistenciaController extends Controller
         
     public function newAction(){
         
-        $format = $this->get('request')->getRequestFormat();
-        
-        $form = $this->get('form.factory')->create(new AsistenciaType(), array());
-        
-        $request = $this->get('Request');
+        $form = $this->get('form.factory')->create(new AsistenciaType());          
+        $request = $this->get('request');
         
         if($request->getMethod() == 'POST'){
-        
-            $form->bindRequest($request);
-            if($form->isValid()){
-                //Aqui se registra la asistencia                
+                   
+           $form->bindRequest($request);                        
+           
+           if($form->isValid()){               
+                
+                $asistencia = $form->getData();
+                
+                $em = $this->get('doctrine')->getEntityManager();
+                $em->persist($asistencia);
+                $em->flush();
+                
+                echo 'El usuario fue registrado con exito';
+
             }
         }
         
+        $format = $this->get('request')->getRequestFormat();
         return $this->render('ChanchitoBundle:Asistencia:new.'.$format.'.twig',array(
             'form' => $form->createView())
                 );

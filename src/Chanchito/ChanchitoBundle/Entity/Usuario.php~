@@ -63,7 +63,7 @@ class Usuario{
 	protected $urlfoto;
 	
         /**
-	* @ORM\OneToMany(targetEntity="Asistencia", mappedBy="usuario")
+	* @ORM\OneToMany(targetEntity="Asistencia", mappedBy="usuarios")
 	*/
 	protected $asistencias;
 
@@ -291,5 +291,9 @@ class Usuario{
     public function getHorario()
     {
         return $this->horario;
+    }
+    
+    public function __toString(){
+        return $this->usuario;
     }
 }

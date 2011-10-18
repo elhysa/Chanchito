@@ -35,6 +35,9 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_configurator_final' => true,
        'ChanchitoBundle_homepage' => true,
        'ChanchitoBundle_registro' => true,
+       'login' => true,
+       'login_check' => true,
+       'logout' => true,
     );
 
     /**
@@ -166,5 +169,20 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
     private function getChanchitoBundle_registroRouteInfo()
     {
         return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AsistenciaController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/registro',  ),));
+    }
+
+    private function getloginRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\UsuarioController::loginAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/login',  ),));
+    }
+
+    private function getlogin_checkRouteInfo()
+    {
+        return array(array (), array (), array (), array (  0 =>   array (    0 => 'text',    1 => '/check',  ),));
+    }
+
+    private function getlogoutRouteInfo()
+    {
+        return array(array (), array (), array (), array (  0 =>   array (    0 => 'text',    1 => '/logout',  ),));
     }
 }

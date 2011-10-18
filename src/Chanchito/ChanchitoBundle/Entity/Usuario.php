@@ -3,6 +3,7 @@ namespace Chanchito\ChanchitoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Chanchito\ChanchitoBundle\Entity
@@ -11,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="Chanchito\ChanchitoBundle\Entity\UsuarioRepository")
  */
 
-class Usuario{
+class Usuario implements UserInterface{
 
 	/**
 	* @ORM\Id
@@ -63,7 +64,7 @@ class Usuario{
 	protected $urlfoto;
 	
         /**
-	* @ORM\OneToMany(targetEntity="Asistencia", mappedBy="usuario")
+	* @ORM\OneToMany(targetEntity="Asistencia", mappedBy="usuarios")
 	*/
 	protected $asistencias;
 
@@ -294,6 +295,26 @@ class Usuario{
     }
     
     public function __toString(){
+        return $this->usuario;
+    }
+
+    public function equals(UserInterface $user) {
+        return $this->getUsername() == $user->getUsername();
+    }
+
+    public function eraseCredentials() {
+        //Aqui se deben borrar las cookies
+    }
+
+    public function getRoles() {
+        return array('ROLE_USER');
+    }
+
+    public function getSalt() {
+        return false;
+    }
+
+    public function getUsername() {
         return $this->usuario;
     }
 }

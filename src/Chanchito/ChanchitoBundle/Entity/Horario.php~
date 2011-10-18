@@ -108,4 +108,14 @@ class Horario {
     {
         return $this->usuario;
     }
+
+    /**
+     * Get usuarios
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUsuarios()
+    {
+        return $this->usuarios;
+    }
 }

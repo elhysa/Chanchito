@@ -45,7 +45,7 @@ class Asistencia
 	* @ORM\ManyToOne(targetEntity="Usuario", inversedBy="asistencias", cascade={"remove"})
 	* @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
 	*/
-	protected $usuario; 
+	protected $usuarios; 
 
    
    public function obtenerMontoAsistencia()
@@ -148,23 +148,23 @@ class Asistencia
     }
 
     /**
-     * Set usuario
+     * Set usuarios
      *
-     * @param Chanchito\ChanchitoBundle\Entity\Usuario $usuario
+     * @param Chanchito\ChanchitoBundle\Entity\Usuario $usuarios
      */
-    public function setUsuario(\Chanchito\ChanchitoBundle\Entity\Usuario $usuario)
+    public function setUsuarios(\Chanchito\ChanchitoBundle\Entity\Usuario $usuarios)
     {
-        $this->usuario = $usuario;
+        $this->usuarios = $usuarios;
     }
 
     /**
-     * Get usuario
+     * Get usuarios
      *
      * @return Chanchito\ChanchitoBundle\Entity\Usuario 
      */
-    public function getUsuario()
+    public function getUsuarios()
     {
-        return $this->usuario;
+        return $this->usuarios;
     }
 
     /**

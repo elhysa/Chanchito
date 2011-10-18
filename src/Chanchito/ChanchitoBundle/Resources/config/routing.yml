@@ -5,3 +5,13 @@ ChanchitoBundle_homepage:
 ChanchitoBundle_registro:
     pattern:  /registro
     defaults: { _controller: ChanchitoBundle:Asistencia:new }
+    
+login:
+    pattern:  /login
+    defaults: { _controller: ChanchitoBundle:Usuario:login }
+    
+login_check:
+    pattern:  /check  
+  
+logout: 
+    pattern:  /logout  

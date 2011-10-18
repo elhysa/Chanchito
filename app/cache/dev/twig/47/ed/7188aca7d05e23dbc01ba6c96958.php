@@ -45,12 +45,25 @@ class __TwigTemplate_47ed7188aca7d05e23dbc01ba6c96958 extends Twig_Template
 <form action=\"";
         // line 5
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ChanchitoBundle_registro"), "html");
-        echo "\" method='post'>
-    ";
-        // line 6
-        echo $this->env->getExtension('form')->renderRest($this->getContext($context, 'form'));
+        echo "\" method='post' ";
+        echo $this->env->getExtension('form')->renderEnctype($this->getContext($context, 'form'));
+        echo ">
+
+    <div>
+        <br>";
+        // line 8
+        echo $this->env->getExtension('form')->renderLabel($this->getContext($context, 'form'));
+        echo " 
+        <br>";
+        // line 9
+        echo $this->env->getExtension('form')->renderErrors($this->getContext($context, 'form'));
         echo "
-        <input type=\"submit\" label=\"Registrar Asistencia\"/>
+        <br>";
+        // line 10
+        echo $this->env->getExtension('form')->renderWidget($this->getContext($context, 'form'));
+        echo "
+    </div>
+        <input type=\"submit\" value=\"Registrar\"/>
 </form>
 
 ";

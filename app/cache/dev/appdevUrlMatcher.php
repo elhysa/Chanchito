@@ -153,6 +153,21 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AsistenciaController::newAction',  '_route' => 'ChanchitoBundle_registro',);
         }
 
+        // login
+        if ($pathinfo === '/login') {
+            return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\UsuarioController::loginAction',  '_route' => 'login',);
+        }
+
+        // login_check
+        if ($pathinfo === '/check') {
+            return array('_route' => 'login_check');
+        }
+
+        // logout
+        if ($pathinfo === '/logout') {
+            return array('_route' => 'logout');
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }
