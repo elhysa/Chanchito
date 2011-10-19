@@ -11,6 +11,7 @@ class __TwigTemplate_bd0f0ad69e3ab386ec6e01bc34763fe4 extends Twig_Template
 
         $this->parent = array();
         $this->blocks = array(
+            'stylesheets' => array($this, 'block_stylesheets'),
             'header' => array($this, 'block_header'),
             'content' => array($this, 'block_content'),
             'body' => array($this, 'block_body'),
@@ -38,25 +39,40 @@ class __TwigTemplate_bd0f0ad69e3ab386ec6e01bc34763fe4 extends Twig_Template
         $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 2
-    public function block_header($context, array $blocks = array())
+    // line 3
+    public function block_stylesheets($context, array $blocks = array())
     {
-        // line 3
-        echo "    <h1>Chanchito wii!!</h1>
+        // line 4
+        echo "        <link href=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/chanchito/css/user.css"), "html");
+        echo "\" rel=\"stylesheet\" type=\"text/css\" />
 ";
     }
 
-    // line 8
+    // line 7
+    public function block_header($context, array $blocks = array())
+    {
+        // line 8
+        echo "<header>
+  <h1 class=\"grid_6\"><a href=\"";
+        // line 9
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ChanchitoBundle_homepage"), "html");
+        echo "\">Chanchito wii!!</a></h1>
+</header>
+";
+    }
+
+    // line 14
     public function block_content($context, array $blocks = array())
     {
-        // line 9
+        // line 15
         echo "        ";
     }
 
-    // line 7
+    // line 13
     public function block_body($context, array $blocks = array())
     {
-        // line 8
+        // line 14
         echo "        ";
         $this->displayBlock('content', $context, $blocks);
     }

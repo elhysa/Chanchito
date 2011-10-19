@@ -36,7 +36,7 @@ class Asistencia
 	protected $registroUsuario;
 	
 	/**
-	* @ORM\Column(type="string")
+	* @ORM\Column(type="string",nullable="true")
 	* @Assert\MaxLength(255)
 	*/
 	protected $motivo;
@@ -50,7 +50,7 @@ class Asistencia
    
    public function obtenerMontoAsistencia()
    {
-	$parametrosTardanza=$this->usuario->getHorario()->getParametrosTardanza();
+	$parametrosTardanza=$this->usuarios->getHorario()->getParametrosTardanza();
 	$horaIngresoEvaluacion=$this->registroReal;
 
 	if ($this->esRegistroConMotivo()){

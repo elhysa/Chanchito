@@ -4,12 +4,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Welcome!{% endblock %} | Chanchito </title>
         <meta name="descripcion" content="{% block metadesc %}{% endblock %}"/> 
+        <link href="{{ asset('bundles/chanchito/css/reset.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/chanchito/css/960.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/chanchito/css/main.css') }}" rel="stylesheet" type="text/css" />
         {% block stylesheets %}{% endblock %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body id={% block pageid '' %}>
-        {% block header %}{% endblock %}
-        {% block body %}{% endblock %}
+        <div class="container_16">
+          {% block header %}{% endblock %}
+        </div>
+        <div class="container_16">
+          {% block body %}{% endblock %}
+        </div>            
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>

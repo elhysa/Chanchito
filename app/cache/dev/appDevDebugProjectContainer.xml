@@ -202,7 +202,7 @@
     <parameter key="security.rememberme.response_listener.class">Symfony\Bundle\SecurityBundle\EventListener\ResponseListener</parameter>
     <parameter key="templating.helper.security.class">Symfony\Bundle\SecurityBundle\Templating\Helper\SecurityHelper</parameter>
     <parameter key="data_collector.security.class">Symfony\Bundle\SecurityBundle\DataCollector\SecurityDataCollector</parameter>
-    <parameter key="security.access.denied_url">null</parameter>
+    <parameter key="security.access.denied_url">/denegado</parameter>
     <parameter key="security.authentication.session_strategy.strategy">migrate</parameter>
     <parameter key="security.access.always_authenticate_before_granting">false</parameter>
     <parameter key="security.authentication.hide_user_not_found">true</parameter>
@@ -1172,7 +1172,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>4e9e09ea2e5fb</argument>
+            <argument>4e9f45bcd00cb</argument>
           </service>
         </argument>
       </argument>
@@ -1227,7 +1227,26 @@
       <tag name="templating.helper" alias="security"/>
       <argument type="service" id="security.context"/>
     </service>
-    <service id="security.user.provider.concrete.main" class="Symfony\Bridge\Doctrine\Security\User\EntityUserProvider" public="false">
+    <service id="security.user.provider.concrete.main" class="Symfony\Component\Security\Core\User\ChainUserProvider" public="false">
+      <argument type="collection">
+        <argument type="service" id="security.user.provider.concrete.user_db"/>
+        <argument type="service" id="security.user.provider.concrete.in_memory"/>
+      </argument>
+    </service>
+    <service id="security.user.provider.concrete.in_memory" class="Symfony\Component\Security\Core\User\InMemoryUserProvider" public="false">
+      <call method="createUser">
+        <argument type="service">
+          <service class="Symfony\Component\Security\Core\User\User" public="false">
+            <argument>admin</argument>
+            <argument>d033e22ae348aeb5660fc2140aec35850c4da997</argument>
+            <argument type="collection">
+              <argument>ROLE_ADMIN</argument>
+            </argument>
+          </service>
+        </argument>
+      </call>
+    </service>
+    <service id="security.user.provider.concrete.user_db" class="Symfony\Bridge\Doctrine\Security\User\EntityUserProvider" public="false">
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
       <argument>Chanchito\ChanchitoBundle\Entity\Usuario</argument>
       <argument>usuario</argument>
@@ -1242,7 +1261,18 @@
                 <call method="add">
                   <argument type="service">
                     <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-                      <argument>^/perfil</argument>
+                      <argument>^/admin</argument>
+                    </service>
+                  </argument>
+                  <argument type="collection">
+                    <argument>ROLE_ADMIN</argument>
+                  </argument>
+                  <argument>null</argument>
+                </call>
+                <call method="add">
+                  <argument type="service">
+                    <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+                      <argument>^/registro</argument>
                     </service>
                   </argument>
                   <argument type="collection">
@@ -1263,6 +1293,8 @@
             <argument type="service" id="security.context"/>
             <argument type="collection">
               <argument type="service" id="security.user.provider.concrete.main"/>
+              <argument type="service" id="security.user.provider.concrete.in_memory"/>
+              <argument type="service" id="security.user.provider.concrete.user_db"/>
             </argument>
             <argument>secured_area</argument>
             <argument type="service" id="monolog.logger.security"/>
@@ -1328,7 +1360,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>4e9e09ea2e5fb</argument>
+            <argument>4e9f45bcd00cb</argument>
             <argument type="service" id="monolog.logger.security"/>
           </service>
         </argument>
@@ -1342,7 +1374,18 @@
                 <call method="add">
                   <argument type="service">
                     <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-                      <argument>^/perfil</argument>
+                      <argument>^/admin</argument>
+                    </service>
+                  </argument>
+                  <argument type="collection">
+                    <argument>ROLE_ADMIN</argument>
+                  </argument>
+                  <argument>null</argument>
+                </call>
+                <call method="add">
+                  <argument type="service">
+                    <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+                      <argument>^/registro</argument>
                     </service>
                   </argument>
                   <argument type="collection">
@@ -1378,7 +1421,7 @@
               <argument>false</argument>
             </service>
           </argument>
-          <argument>null</argument>
+          <argument>/denegado</argument>
           <argument>null</argument>
           <argument type="service" id="monolog.logger.security"/>
         </service>
@@ -2282,6 +2325,14 @@
     </service>
     <service id="security.encoder_factory" class="Symfony\Component\Security\Core\Encoder\EncoderFactory">
       <argument type="collection">
+        <argument key="Symfony\Component\Security\Core\User\User" type="collection">
+          <argument key="class">%security.encoder.digest.class%</argument>
+          <argument key="arguments" type="collection">
+            <argument>sha1</argument>
+            <argument>false</argument>
+            <argument>1</argument>
+          </argument>
+        </argument>
         <argument key="Chanchito\ChanchitoBundle\Entity\Usuario" type="collection">
           <argument key="class">%security.encoder.digest.class%</argument>
           <argument key="arguments" type="collection">

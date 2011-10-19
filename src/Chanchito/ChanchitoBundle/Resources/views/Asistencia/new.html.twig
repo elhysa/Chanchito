@@ -4,12 +4,45 @@
 
 <form action="{{ path('ChanchitoBundle_registro') }}" method='post' {{ form_enctype(form) }}>
 
-    <div>
-        <br>{{ form_label(form) }} 
-        <br>{{ form_errors(form) }}
-        <br>{{ form_widget(form) }}
+    {{ form_errors(form) }}
+
+    <p>
+        <input type="checkbox" name="tieneMotivo"  onclick="javascript:display()" /> Tiene Motivo<br />
+    </p>
+    
+    <div id="motivo" style="display:none">
+        
+    {{ form_errors(form.registroUsuario) }}
+    <p>
+        {{ form_label(form.registroUsuario) }}
+        {{ form_widget(form.registroUsuario) }}
+    </p>
+    
+    {{ form_errors(form.motivo) }}
+    <p>
+        {{ form_label(form.motivo) }}
+        {{ form_widget(form.motivo) }}
+    </p>
+    
     </div>
-        <input type="submit" value="Registrar"/>
+  
+    {{ form_errors(form._token) }}
+    {{ form_widget(form._token) }}
+        <input type="submit" value="Registrar Asistencia"/>
 </form>
 
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+function display()
+{
+    var elm = document.getElementById('motivo');
+    
+    if (elm.style.display == "none"){
+        elm.style.display = "";}
+    else{
+        elm.style.display = "none";}
+}
+</script>
 {% endblock %}

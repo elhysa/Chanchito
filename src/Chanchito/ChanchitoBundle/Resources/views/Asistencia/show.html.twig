@@ -1,6 +1,12 @@
 {% extends 'ChanchitoBundle::layout.html.twig' %}
+
+{% block title %}Listado de Registro de Asistencias{% endblock %}
+
+{% block pageid 'user' %}
+
 {% block content %}
-    <table border=2 >
+    <table>
+        <thead>
         <tr>
             <th>Fecha Asistencia</th>
             <th>Participante</th>
@@ -9,16 +15,20 @@
             <th>Motivo Diferencia Hora</th>
             <th>Monto a Pagar</th>
         </tr>
+        </thead>
+        <tbody>
         {% for asistencia in listadoAsistencia  %}
         <tr>
 
             <td>{{ asistencia.fechaAsistencia | date('d/m/Y') }}</td>
-            <td>{{ asistencia.usuario.obtenerNombreCompleto  }}</td>
+            <td>{{ asistencia.usuarios.obtenerNombreCompleto  }}</td>
             <td>{{ asistencia.registroReal | date('h:i:s') }}</td>
             <td>{{ asistencia.registroUsuario | date('h:i:s') }}</td>
             <td>{{ asistencia.motivo }}</td>
             <td>{{ asistencia.obtenerMontoAsistencia() }}</td>
         </tr>
+        
         {% endfor %}
+        </tbody>
     </table>
 {% endblock %}

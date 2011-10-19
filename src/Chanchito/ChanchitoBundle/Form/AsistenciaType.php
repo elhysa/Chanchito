@@ -7,12 +7,11 @@ use Symfony\Component\Form\FormBuilder;
 class AsistenciaType extends AbstractType {
     
     public function buildForm(FormBuilder $builder, array $options) {
-        $builder->add('fechaAsistencia' , 'date', array('label' => 'Fecha Asistencia'))
-                ->add('registroReal', 'time',array('label' => 'Horario real'))
+        $builder//->add('fechaAsistencia' , 'date', array('label' => 'Fecha Asistencia'))
                 ->add('registroUsuario', 'time',array('label' => 'Horario de ingreso'))
-              //->add('tieneMotivo','checkbox',array('label' => 'Tiene Motivo'))
-                ->add('motivo','textarea',array('label' => 'Motivo'))
-                ->add('usuarios', 'entity', array('class' => 'Chanchito\\ChanchitoBundle\\Entity\\Usuario'));
+                //->add('tieneMotivo','checkbox',array('label' => 'Tiene Motivo'))
+                ->add('motivo','textarea',array('label' => 'Motivo', 'required' => false));
+                //->add('usuarios', 'entity', array('class' => 'Chanchito\\ChanchitoBundle\\Entity\\Usuario'));
 
     }
 

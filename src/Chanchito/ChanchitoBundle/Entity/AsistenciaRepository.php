@@ -12,4 +12,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class AsistenciaRepository extends EntityRepository
 {
+    public function findAsistenciaToday()
+    {
+        $today =  new \DateTime('now');
+        $today->setTime(0, 0, 0);
+        
+        $em = $this->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('p')
+            ->from('ChanchitoBundle:Asistencia', 'p')
+            ->where('p.fechaAsistencia = :now')
+            ->orderBy('p.fechaAsistencia', 'ASC')
+            ->setParameter('now', $today , \Doctrine\DBAL\Types\Type::DATETIME)
+            ->getQuery();
+
+        return $query->getResult();
+    }
+    
 }

@@ -12,6 +12,7 @@ class __TwigTemplate_47ed7188aca7d05e23dbc01ba6c96958 extends Twig_Template
         $this->parent = array();
         $this->blocks = array(
             'content' => array($this, 'block_content'),
+            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -49,23 +50,78 @@ class __TwigTemplate_47ed7188aca7d05e23dbc01ba6c96958 extends Twig_Template
         echo $this->env->getExtension('form')->renderEnctype($this->getContext($context, 'form'));
         echo ">
 
-    <div>
-        <br>";
-        // line 8
-        echo $this->env->getExtension('form')->renderLabel($this->getContext($context, 'form'));
-        echo " 
-        <br>";
-        // line 9
+    ";
+        // line 7
         echo $this->env->getExtension('form')->renderErrors($this->getContext($context, 'form'));
         echo "
-        <br>";
-        // line 10
-        echo $this->env->getExtension('form')->renderWidget($this->getContext($context, 'form'));
+
+    <p>
+        <input type=\"checkbox\" name=\"tieneMotivo\"  onclick=\"javascript:display()\" /> Tiene Motivo<br />
+    </p>
+    
+    <div id=\"motivo\" style=\"display:none\">
+        
+    ";
+        // line 15
+        echo $this->env->getExtension('form')->renderErrors($this->getAttribute($this->getContext($context, 'form'), "registroUsuario", array(), "any", false));
         echo "
+    <p>
+        ";
+        // line 17
+        echo $this->env->getExtension('form')->renderLabel($this->getAttribute($this->getContext($context, 'form'), "registroUsuario", array(), "any", false));
+        echo "
+        ";
+        // line 18
+        echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, 'form'), "registroUsuario", array(), "any", false));
+        echo "
+    </p>
+    
+    ";
+        // line 21
+        echo $this->env->getExtension('form')->renderErrors($this->getAttribute($this->getContext($context, 'form'), "motivo", array(), "any", false));
+        echo "
+    <p>
+        ";
+        // line 23
+        echo $this->env->getExtension('form')->renderLabel($this->getAttribute($this->getContext($context, 'form'), "motivo", array(), "any", false));
+        echo "
+        ";
+        // line 24
+        echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, 'form'), "motivo", array(), "any", false));
+        echo "
+    </p>
+    
     </div>
-        <input type=\"submit\" value=\"Registrar\"/>
+  
+    ";
+        // line 29
+        echo $this->env->getExtension('form')->renderErrors($this->getAttribute($this->getContext($context, 'form'), "_token", array(), "any", false));
+        echo "
+    ";
+        // line 30
+        echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, 'form'), "_token", array(), "any", false));
+        echo "
+        <input type=\"submit\" value=\"Registrar Asistencia\"/>
 </form>
 
+";
+    }
+
+    // line 36
+    public function block_javascripts($context, array $blocks = array())
+    {
+        // line 37
+        echo "<script type=\"text/javascript\">
+function display()
+{
+    var elm = document.getElementById('motivo');
+    
+    if (elm.style.display == \"none\"){
+        elm.style.display = \"\";}
+    else{
+        elm.style.display = \"none\";}
+}
+</script>
 ";
     }
 

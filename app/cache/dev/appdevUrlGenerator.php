@@ -38,6 +38,16 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        'login' => true,
        'login_check' => true,
        'logout' => true,
+       'denegado' => true,
+       'admin_homepage' => true,
+       'admin_param_list' => true,
+       'admin_param_new' => true,
+       'admin_param_edit' => true,
+       'admin_param_delete' => true,
+       'admin_user_list' => true,
+       'admin_user_new' => true,
+       'admin_user_edit' => true,
+       'admin_user_delete' => true,
     );
 
     /**
@@ -63,7 +73,7 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function get_welcomeRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\WelcomeController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/',  ),));
+        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AsistenciaController::showAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/',  ),));
     }
 
     private function get_demo_loginRouteInfo()
@@ -184,5 +194,55 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
     private function getlogoutRouteInfo()
     {
         return array(array (), array (), array (), array (  0 =>   array (    0 => 'text',    1 => '/logout',  ),));
+    }
+
+    private function getdenegadoRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\UsuarioController::denegadoAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/denegado',  ),));
+    }
+
+    private function getadmin_homepageRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminParamController::listAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin',  ),));
+    }
+
+    private function getadmin_param_listRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminParamController::listAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/Param/list',  ),));
+    }
+
+    private function getadmin_param_newRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminParamController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/Param/new',  ),));
+    }
+
+    private function getadmin_param_editRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminParamController::editAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/admin/Param/edit',  ),));
+    }
+
+    private function getadmin_param_deleteRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminParamController::deleteAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/admin/Param/delete',  ),));
+    }
+
+    private function getadmin_user_listRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminUsuarioController::listAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/User/list',  ),));
+    }
+
+    private function getadmin_user_newRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminUsuarioController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/User/new',  ),));
+    }
+
+    private function getadmin_user_editRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminUsuarioController::editAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/admin/User/edit',  ),));
+    }
+
+    private function getadmin_user_deleteRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminUsuarioController::deleteAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/admin/User/delete',  ),));
     }
 }

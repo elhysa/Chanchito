@@ -30,7 +30,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', '_welcome');
             }
-            return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\WelcomeController::indexAction',  '_route' => '_welcome',);
+            return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AsistenciaController::showAction',  '_route' => '_welcome',);
         }
 
         // _demo_login
@@ -166,6 +166,62 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         // logout
         if ($pathinfo === '/logout') {
             return array('_route' => 'logout');
+        }
+
+        // denegado
+        if ($pathinfo === '/denegado') {
+            return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\UsuarioController::denegadoAction',  '_route' => 'denegado',);
+        }
+
+        // admin_homepage
+        if ($pathinfo === '/admin') {
+            return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminParamController::listAction',  '_route' => 'admin_homepage',);
+        }
+
+        if (0 === strpos($pathinfo, '/admin/Param')) {
+            // admin_param_list
+            if ($pathinfo === '/admin/Param/list') {
+                return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminParamController::listAction',  '_route' => 'admin_param_list',);
+            }
+
+            // admin_param_new
+            if ($pathinfo === '/admin/Param/new') {
+                return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminParamController::newAction',  '_route' => 'admin_param_new',);
+            }
+
+            // admin_param_edit
+            if (0 === strpos($pathinfo, '/admin/Param/edit') && preg_match('#^/admin/Param/edit/(?P<id>[^/]+?)$#xs', $pathinfo, $matches)) {
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminParamController::editAction',)), array('_route' => 'admin_param_edit'));
+            }
+
+            // admin_param_delete
+            if (0 === strpos($pathinfo, '/admin/Param/delete') && preg_match('#^/admin/Param/delete/(?P<id>[^/]+?)$#xs', $pathinfo, $matches)) {
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminParamController::deleteAction',)), array('_route' => 'admin_param_delete'));
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/admin/User')) {
+            // admin_user_list
+            if ($pathinfo === '/admin/User/list') {
+                return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminUsuarioController::listAction',  '_route' => 'admin_user_list',);
+            }
+
+            // admin_user_new
+            if ($pathinfo === '/admin/User/new') {
+                return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminUsuarioController::newAction',  '_route' => 'admin_user_new',);
+            }
+
+            // admin_user_edit
+            if (0 === strpos($pathinfo, '/admin/User/edit') && preg_match('#^/admin/User/edit/(?P<id>[^/]+?)$#xs', $pathinfo, $matches)) {
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminUsuarioController::editAction',)), array('_route' => 'admin_user_edit'));
+            }
+
+            // admin_user_delete
+            if (0 === strpos($pathinfo, '/admin/User/delete') && preg_match('#^/admin/User/delete/(?P<id>[^/]+?)$#xs', $pathinfo, $matches)) {
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminUsuarioController::deleteAction',)), array('_route' => 'admin_user_delete'));
+            }
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

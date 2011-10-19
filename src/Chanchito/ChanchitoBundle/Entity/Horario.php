@@ -118,4 +118,9 @@ class Horario {
     {
         return $this->usuarios;
     }
+    
+    public function __toString(){
+        return $this->nombre;
+    }
+    
 }

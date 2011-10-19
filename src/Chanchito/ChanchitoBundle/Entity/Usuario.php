@@ -22,7 +22,7 @@ class Usuario implements UserInterface{
 	protected $id;
 
         /**
-	* @ORM\Column(type="string" )
+	* @ORM\Column(type="string", unique="true" )
 	* @Assert\NotBlank()
 	*/
 	protected $usuario;
@@ -53,13 +53,11 @@ class Usuario implements UserInterface{
 	* @ORM\Column(type="string")
 	* @Assert\NotBlank()
 	* @Assert\MinLength(5)
-	* @Assert\MaxLength(20)
 	*/
 	protected $password;
 	
         /**
-	* @ORM\Column(type="string")
-	* @Assert\NotBlank()
+	* @ORM\Column(type="string",nullable="true")
 	*/
 	protected $urlfoto;
 	

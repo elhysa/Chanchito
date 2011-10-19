@@ -1,8 +1,14 @@
 {% extends '::base.html.twig' %}
-{% block header %}
-    <h1>Chanchito wii!!</h1>
-{% endblock %}
 
+{% block stylesheets %}
+        <link href="{{ asset('bundles/chanchito/css/user.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+        
+{% block header %}
+<header>
+  <h1 class="grid_6"><a href="{{ path('ChanchitoBundle_homepage') }}">Chanchito wii!!</a></h1>
+</header>
+{% endblock %}
 
 {% block body %}
         {% block content %}

@@ -12,4 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class UsuarioRepository extends EntityRepository
 {
+    public function orderbyMonto()
+    {/*
+        $em = $this->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('p')
+            ->from('ChanchitoBundle:Usuario', 'u')
+             ->from($from, $alias)
+            ->where('p.fecha = :fecha')
+            ->orderBy('p.fecha', 'ASC')
+            ->setParameter('fecha', new \DateTime($fecha), \Doctrine\DBAL\Types\Type::DATETIME)
+            ->getQuery();
+
+        return $query->getResult();
+*/  
+    }
 }

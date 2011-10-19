@@ -15,3 +15,11 @@ login_check:
   
 logout: 
     pattern:  /logout  
+
+denegado:
+    pattern:  /denegado
+    defaults: { _controller: ChanchitoBundle:Usuario:denegado }    
+    
+admin_homepage:
+    pattern:  /admin
+    defaults: { _controller: ChanchitoBundle:AdminParam:list  }    
