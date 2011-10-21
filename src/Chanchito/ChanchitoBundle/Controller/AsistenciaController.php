@@ -53,10 +53,20 @@ class AsistenciaController extends Controller
            
            $form->bindRequest($request);                        
            
-           if($form->isValid()){               
-                $em->persist($asistencia);
-                $em->flush();
-
+           if($form->isValid()){     
+                
+               $asistenciaToday = $em->getRepository('ChanchitoBundle:Asistencia')->findAsistenciaTodayByUser($usuario->getId());
+                if( null == $asistenciaToday){    
+                    error_log('Intenta registrar');                    
+                    $em->persist($asistencia);
+                    $em->flush();                   
+                    $request->getSession()->setFlash('notice', 'Su asistencia ha sido registrada con exito');
+                    return $this->redirect($this->generateUrl('perfil'));  
+                }else{
+                    error_log('Asistencia ya registrada');
+                    $request->getSession()->setFlash('notice', 'Ya ha registrado su asistencia el día de hoy');
+                    return $this->redirect($this->generateUrl('perfil'));  
+                };
             }
         }
         

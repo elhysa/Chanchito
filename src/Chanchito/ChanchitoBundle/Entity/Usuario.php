@@ -315,4 +315,26 @@ class Usuario implements UserInterface{
     public function getUsername() {
         return $this->usuario;
     }
+    
+    public function getTiempoTardanza() {
+        $asistencias = $this->getAsistencias();
+        
+        $tiempoTardanza = 0;
+        foreach ( $asistencias as $asistencia) {
+            $tiempoTardanza = $tiempoTardanza + $asistencia->obtenerTiempoTardanza();            
+        }
+        
+        return $tiempoTardanza;
+    }
+    
+    public function getMonto() {
+        $asistencias = $this->getAsistencias();
+        
+        $monto = 0;
+        foreach ( $asistencias as $asistencia) {
+            $monto = $monto + $asistencia->obtenerMontoAsistencia();            
+        }
+        
+        return $monto;
+    }
 }

@@ -29,5 +29,25 @@ class AsistenciaRepository extends EntityRepository
 
         return $query->getResult();
     }
+
+        public function findAsistenciaTodayByUser($user_id)
+    {
+        $today =  new \DateTime('now');
+        $today->setTime(0, 0, 0);
+
+        $em = $this->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('p')
+            ->from('ChanchitoBundle:Asistencia', 'p')
+            ->where('p.fechaAsistencia = :now')
+            ->andWhere('p.usuarios = :user_id')
+            ->orderBy('p.fechaAsistencia', 'ASC')
+            ->setParameter('now', $today , \Doctrine\DBAL\Types\Type::DATETIME)
+            ->setParameter('user_id', $user_id , \Doctrine\DBAL\Types\Type::INTEGER)
+            ->getQuery();
+
+        return $query->getResult();
+    }
     
 }

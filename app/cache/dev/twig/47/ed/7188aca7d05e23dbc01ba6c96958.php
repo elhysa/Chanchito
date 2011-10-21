@@ -11,6 +11,8 @@ class __TwigTemplate_47ed7188aca7d05e23dbc01ba6c96958 extends Twig_Template
 
         $this->parent = array();
         $this->blocks = array(
+            'title' => array($this, 'block_title'),
+            'pageid' => array($this, 'block_pageid'),
             'content' => array($this, 'block_content'),
             'javascripts' => array($this, 'block_javascripts'),
         );
@@ -37,21 +39,33 @@ class __TwigTemplate_47ed7188aca7d05e23dbc01ba6c96958 extends Twig_Template
         $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 2
+    // line 3
+    public function block_title($context, array $blocks = array())
+    {
+        echo "Registro de Asistencias";
+    }
+
+    // line 5
+    public function block_pageid($context, array $blocks = array())
+    {
+        echo "user";
+    }
+
+    // line 7
     public function block_content($context, array $blocks = array())
     {
-        // line 3
+        // line 8
         echo "<h1>Registro de asistencia</h1>
 
 <form action=\"";
-        // line 5
+        // line 10
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("ChanchitoBundle_registro"), "html");
         echo "\" method='post' ";
         echo $this->env->getExtension('form')->renderEnctype($this->getContext($context, 'form'));
         echo ">
 
     ";
-        // line 7
+        // line 12
         echo $this->env->getExtension('form')->renderErrors($this->getContext($context, 'form'));
         echo "
 
@@ -62,31 +76,31 @@ class __TwigTemplate_47ed7188aca7d05e23dbc01ba6c96958 extends Twig_Template
     <div id=\"motivo\" style=\"display:none\">
         
     ";
-        // line 15
+        // line 20
         echo $this->env->getExtension('form')->renderErrors($this->getAttribute($this->getContext($context, 'form'), "registroUsuario", array(), "any", false));
         echo "
     <p>
         ";
-        // line 17
+        // line 22
         echo $this->env->getExtension('form')->renderLabel($this->getAttribute($this->getContext($context, 'form'), "registroUsuario", array(), "any", false));
         echo "
         ";
-        // line 18
+        // line 23
         echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, 'form'), "registroUsuario", array(), "any", false));
         echo "
     </p>
     
     ";
-        // line 21
+        // line 26
         echo $this->env->getExtension('form')->renderErrors($this->getAttribute($this->getContext($context, 'form'), "motivo", array(), "any", false));
         echo "
     <p>
         ";
-        // line 23
+        // line 28
         echo $this->env->getExtension('form')->renderLabel($this->getAttribute($this->getContext($context, 'form'), "motivo", array(), "any", false));
         echo "
         ";
-        // line 24
+        // line 29
         echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, 'form'), "motivo", array(), "any", false));
         echo "
     </p>
@@ -94,11 +108,11 @@ class __TwigTemplate_47ed7188aca7d05e23dbc01ba6c96958 extends Twig_Template
     </div>
   
     ";
-        // line 29
+        // line 34
         echo $this->env->getExtension('form')->renderErrors($this->getAttribute($this->getContext($context, 'form'), "_token", array(), "any", false));
         echo "
     ";
-        // line 30
+        // line 35
         echo $this->env->getExtension('form')->renderWidget($this->getAttribute($this->getContext($context, 'form'), "_token", array(), "any", false));
         echo "
         <input type=\"submit\" value=\"Registrar Asistencia\"/>
@@ -107,10 +121,10 @@ class __TwigTemplate_47ed7188aca7d05e23dbc01ba6c96958 extends Twig_Template
 ";
     }
 
-    // line 36
+    // line 41
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 37
+        // line 42
         echo "<script type=\"text/javascript\">
 function display()
 {

@@ -123,4 +123,15 @@ class Horario {
         return $this->nombre;
     }
     
+    public function getHoraEntrada(){
+        $parametros = $this->getParametrosTardanza();
+        $horarioEntrada = $parametros->first()->getHorarioMinimo();
+        foreach($parametros as $param){
+            if($param->getHorarioMinimo() < $horarioEntrada){
+                $horarioEntrada = $param->getHorarioMinimo();
+            }            
+        }
+        return $horarioEntrada;
+    }
+    
 }

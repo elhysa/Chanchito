@@ -6,8 +6,30 @@
         
 {% block header %}
 <header>
-  <h1 class="grid_6"><a href="{{ path('ChanchitoBundle_homepage') }}">Chanchito wii!!</a></h1>
+  <h1 class="grid_6"><a href="{{ path('ChanchitoBundle_homepage') }}">Chanchito</a></h1>
+  <nav class="grid_10">
+      <ul>
+          <li><a href="{{ path('ranking_puntual') }}">El puntual</a></li>        
+          <li><a href="{{ path('ranking_tarde') }}">El tardón</a></li>
+          <li><a href="{{ path('ranking_monto') }}">El aportador</a></li>
+          
+        {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('admin_homepage') }}">Mantenimientos</a></li>
+        {% else %}
+            <li><a href="{{ app.user ? path('perfil') : path('login') }}">{{ app.user ? 'Mi perfil' : 'Ingresar' }}</a></li>            
+        {% endif %}
+
+
+        {% if app.user %}
+        <li>{{ app.user.username }}<a href="{{ path('logout') }}">Salir</a></li>
+        {% endif %}          
+      </ul>          
+  </nav>  
 </header>
+  <nav class="grid_10">
+      <ul></ul>        
+  </nav>
+  
 {% endblock %}
 
 {% block body %}

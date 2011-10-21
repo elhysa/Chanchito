@@ -23,3 +23,24 @@ denegado:
 admin_homepage:
     pattern:  /admin
     defaults: { _controller: ChanchitoBundle:AdminParam:list  }    
+    
+ranking_monto:
+    pattern:  /ranking/monto
+    defaults: { _controller: ChanchitoBundle:Ranking:monto }  
+
+ranking_puntual:
+    pattern:  /ranking/puntual
+    defaults: { _controller: ChanchitoBundle:Ranking:puntual }  
+
+ranking_tarde:
+    pattern:  /ranking/tarde
+    defaults: { _controller: ChanchitoBundle:Ranking:tarde }    
+    
+perfil:
+    pattern:  /miperfil
+    defaults: { _controller: ChanchitoBundle:Usuario:perfil }  
+    
+new_password:
+    pattern:  /miperfil/newpassword
+    defaults: { _controller: ChanchitoBundle:Usuario:password }  
+  

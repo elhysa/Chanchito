@@ -6,6 +6,9 @@ security:
       form_login:
         login_path:  /login
         check_path:  /check
+        default_target_path: /registro
+        always_use_default_target_path: false
+        target_path_parameter: redirect_url
       logout:
         path:   /logout
         target: /
@@ -13,6 +16,7 @@ security:
   access_control:  
     - { path: ^/admin    , roles: ROLE_ADMIN }
     - { path: ^/registro , roles: ROLE_USER }
+    - { path: ^/miperfil , roles: ROLE_USER }
   providers:
     main:
         providers: [user_db,in_memory] 

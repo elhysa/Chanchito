@@ -3,6 +3,7 @@ namespace Chanchito\ChanchitoBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Chanchito\ChanchitoBundle\Entity
  *
@@ -47,6 +48,27 @@ class Asistencia
 	*/
 	protected $usuarios; 
 
+
+   public function obtenerTiempoTardanza()
+   {
+	$horaIngresoEvaluacion=$this->registroReal;
+
+	if ($this->esRegistroConMotivo()){
+		$horaIngresoEvaluacion=$this->registroUsuario;
+	}        
+                
+        $horaEntrada = $this->usuarios->getHorario()->getHoraEntrada();
+                
+        $tiempoTardanza=$horaIngresoEvaluacion->diff($horaEntrada);
+        
+        $int = 0;
+        
+        if($horaEntrada < $horaIngresoEvaluacion){
+            $int = $tiempoTardanza->format('%I') + $tiempoTardanza->format('%h')*60;
+        }
+        
+	return $int;
+   }
    
    public function obtenerMontoAsistencia()
    {
@@ -61,7 +83,7 @@ class Asistencia
 			return	$parametro->getMonto();
 		}	
   	 }
-	return -1;
+	return 0;
    }	
 
     public function esRegistroConMotivo()

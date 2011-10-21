@@ -40,6 +40,11 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        'logout' => true,
        'denegado' => true,
        'admin_homepage' => true,
+       'ranking_monto' => true,
+       'ranking_puntual' => true,
+       'ranking_tarde' => true,
+       'perfil' => true,
+       'new_password' => true,
        'admin_param_list' => true,
        'admin_param_new' => true,
        'admin_param_edit' => true,
@@ -204,6 +209,31 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
     private function getadmin_homepageRouteInfo()
     {
         return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminParamController::listAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin',  ),));
+    }
+
+    private function getranking_montoRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\RankingController::montoAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/ranking/monto',  ),));
+    }
+
+    private function getranking_puntualRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\RankingController::puntualAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/ranking/puntual',  ),));
+    }
+
+    private function getranking_tardeRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\RankingController::tardeAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/ranking/tarde',  ),));
+    }
+
+    private function getperfilRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\UsuarioController::perfilAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/miperfil',  ),));
+    }
+
+    private function getnew_passwordRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\UsuarioController::passwordAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/miperfil/newpassword',  ),));
     }
 
     private function getadmin_param_listRouteInfo()

@@ -178,6 +178,31 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminParamController::listAction',  '_route' => 'admin_homepage',);
         }
 
+        // ranking_monto
+        if ($pathinfo === '/ranking/monto') {
+            return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\RankingController::montoAction',  '_route' => 'ranking_monto',);
+        }
+
+        // ranking_puntual
+        if ($pathinfo === '/ranking/puntual') {
+            return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\RankingController::puntualAction',  '_route' => 'ranking_puntual',);
+        }
+
+        // ranking_tarde
+        if ($pathinfo === '/ranking/tarde') {
+            return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\RankingController::tardeAction',  '_route' => 'ranking_tarde',);
+        }
+
+        // perfil
+        if ($pathinfo === '/miperfil') {
+            return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\UsuarioController::perfilAction',  '_route' => 'perfil',);
+        }
+
+        // new_password
+        if ($pathinfo === '/miperfil/newpassword') {
+            return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\UsuarioController::passwordAction',  '_route' => 'new_password',);
+        }
+
         if (0 === strpos($pathinfo, '/admin/Param')) {
             // admin_param_list
             if ($pathinfo === '/admin/Param/list') {

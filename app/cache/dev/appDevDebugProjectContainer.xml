@@ -1172,7 +1172,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>4e9f45bcd00cb</argument>
+            <argument>4ea1cc97bebc2</argument>
           </service>
         </argument>
       </argument>
@@ -1280,6 +1280,17 @@
                   </argument>
                   <argument>null</argument>
                 </call>
+                <call method="add">
+                  <argument type="service">
+                    <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+                      <argument>^/miperfil</argument>
+                    </service>
+                  </argument>
+                  <argument type="collection">
+                    <argument>ROLE_USER</argument>
+                  </argument>
+                  <argument>null</argument>
+                </call>
               </service>
             </argument>
             <argument type="service">
@@ -1338,10 +1349,10 @@
             <argument type="collection">
               <argument key="check_path">/check</argument>
               <argument key="login_path">/login</argument>
-              <argument key="use_forward">false</argument>
               <argument key="always_use_default_target_path">false</argument>
-              <argument key="default_target_path">/</argument>
-              <argument key="target_path_parameter">_target_path</argument>
+              <argument key="default_target_path">/registro</argument>
+              <argument key="target_path_parameter">redirect_url</argument>
+              <argument key="use_forward">false</argument>
               <argument key="use_referer">false</argument>
               <argument key="failure_path">null</argument>
               <argument key="failure_forward">false</argument>
@@ -1360,7 +1371,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>4e9f45bcd00cb</argument>
+            <argument>4ea1cc97bebc2</argument>
             <argument type="service" id="monolog.logger.security"/>
           </service>
         </argument>
@@ -1386,6 +1397,17 @@
                   <argument type="service">
                     <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
                       <argument>^/registro</argument>
+                    </service>
+                  </argument>
+                  <argument type="collection">
+                    <argument>ROLE_USER</argument>
+                  </argument>
+                  <argument>null</argument>
+                </call>
+                <call method="add">
+                  <argument type="service">
+                    <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+                      <argument>^/miperfil</argument>
                     </service>
                   </argument>
                   <argument type="collection">
