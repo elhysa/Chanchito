@@ -72,6 +72,7 @@
   'ChanchitoBundle:AdminUsuario:edit.html.twig' => '/var/www/chanchito/src/Chanchito/ChanchitoBundle/Resources/views/AdminUsuario/edit.html.twig',
   'ChanchitoBundle:AdminUsuario:new.html.twig' => '/var/www/chanchito/src/Chanchito/ChanchitoBundle/Resources/views/AdminUsuario/new.html.twig',
   'ChanchitoBundle:AdminUsuario:list.html.twig' => '/var/www/chanchito/src/Chanchito/ChanchitoBundle/Resources/views/AdminUsuario/list.html.twig',
+  'ChanchitoBundle:Admin:show.html.twig' => '/var/www/chanchito/src/Chanchito/ChanchitoBundle/Resources/views/Admin/show.html.twig',
   'ChanchitoBundle:AdminParam:edit.html.twig' => '/var/www/chanchito/src/Chanchito/ChanchitoBundle/Resources/views/AdminParam/edit.html.twig',
   'ChanchitoBundle:AdminParam:new.html.twig' => '/var/www/chanchito/src/Chanchito/ChanchitoBundle/Resources/views/AdminParam/new.html.twig',
   'ChanchitoBundle:AdminParam:list.html.twig' => '/var/www/chanchito/src/Chanchito/ChanchitoBundle/Resources/views/AdminParam/list.html.twig',
