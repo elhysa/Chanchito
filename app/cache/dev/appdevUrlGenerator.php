@@ -208,7 +208,7 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function getadmin_homepageRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminParamController::listAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin',  ),));
+        return array(array (), array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminController::showAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin',  ),));
     }
 
     private function getranking_montoRouteInfo()

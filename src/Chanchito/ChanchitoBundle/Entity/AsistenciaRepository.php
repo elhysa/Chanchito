@@ -49,5 +49,33 @@ class AsistenciaRepository extends EntityRepository
 
         return $query->getResult();
     }
+
+    public function findAsistenciaByUser($user_id)
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('p')
+            ->from('ChanchitoBundle:Asistencia', 'p')
+            ->where('p.usuarios = :user_id')
+            ->orderBy('p.fechaAsistencia', 'DESC')
+            ->setParameter('user_id', $user_id , \Doctrine\DBAL\Types\Type::INTEGER)
+            ->getQuery();
+
+        return $query->getResult();
+    }
     
+    public function findAsistenciaOrderByFechaAsistencia()
+    {
+
+        $em = $this->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('p')
+            ->from('ChanchitoBundle:Asistencia', 'p')
+            ->orderBy('p.fechaAsistencia', 'DESC')
+            ->getQuery();
+
+        return $query->getResult();
+    }    
 }

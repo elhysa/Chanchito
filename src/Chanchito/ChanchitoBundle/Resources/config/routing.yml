@@ -1,7 +1,7 @@
 ChanchitoBundle_homepage:
     pattern:  /listadoAsistencia
     defaults: { _controller: ChanchitoBundle:Asistencia:show }
-
+    
 ChanchitoBundle_registro:
     pattern:  /registro
     defaults: { _controller: ChanchitoBundle:Asistencia:new }
@@ -44,3 +44,6 @@ new_password:
     pattern:  /miperfil/newpassword
     defaults: { _controller: ChanchitoBundle:Usuario:password }  
   
+admin_homepage:
+    pattern:  /admin
+    defaults: { _controller: ChanchitoBundle:Admin:show }      

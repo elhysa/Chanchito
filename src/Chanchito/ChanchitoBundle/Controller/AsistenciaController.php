@@ -38,10 +38,8 @@ class AsistenciaController extends Controller
         $asistencia->setRegistroReal(new \DateTime('now'));
         $asistencia->setRegistroUsuario(new \DateTime('now'));
         
-        //$username = $this->get('request')->getSession()->get(Security::USERNAME);
         $usuario = $this->get('security.context')->getToken()->getUser();
-        //$usuario = $em->find('Usuario',1);
-                
+        
         $asistencia->setUsuarios($usuario);
         
         $form = $this->get('form.factory')->create(new AsistenciaType());          

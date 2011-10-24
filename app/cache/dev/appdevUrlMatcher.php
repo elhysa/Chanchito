@@ -175,7 +175,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         // admin_homepage
         if ($pathinfo === '/admin') {
-            return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminParamController::listAction',  '_route' => 'admin_homepage',);
+            return array (  '_controller' => 'Chanchito\\ChanchitoBundle\\Controller\\AdminController::showAction',  '_route' => 'admin_homepage',);
         }
 
         // ranking_monto
